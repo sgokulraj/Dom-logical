@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resize and Drag an Element</title>
+    <style>
+        .resizeable {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            border: 1px solid black;
+        }
+
+        .resize {
+            position: absolute;
+        }
+
+        .resize-top {
+            width: 100%;
+            top: 0;
+            left: 0;
+            cursor: n-resize;
+            height: 5px;
+        }
+
+        .resize-bottom {
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            cursor: n-resize;
+            height: 5px;
+        }
+
+        .resize-left {
+            height: 100%;
+            top: 0;
+            left: 0;
+            cursor: e-resize;
+            width: 5px;
+        }
+
+        .resize-right {
+            height: 100%;
+            top: 0;
+            right: 0;
+            cursor: e-resize;
+            width: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>To create a draggable and and resizeable element</h1>
+    <main>
+        <div class="resizeable">
+            Drag this Element to resize
+            <div class="resize resize-top"></div>
+            <div class="resize resize-right"></div>
+            <div class="resize resize-bottom"></div>
+            <div class="resize resize-left"></div>
+        </div>
+    </main>
+    <script>
+        let resizeableEle = document.querySelector(".resizeable")
+        let resize = document.querySelectorAll(".resize")
+
+        let eleWidth = 0;
+        let eleHeight = 0;
+
+        let cursorX = 0;
+        let cursorY = 0;
+
+        resize.forEach((ele) => {
+            ele.addEventListener('mousedown', mousedownFunction)
+        })
+
+        function mousedownFunction(e) {
+            cursorX = e.clientX;
+            cursorY = e.clientY;
+
+            let eleActualDimension = window.getComputedStyle(resizeableEle)
+            eleWidth = parseInt(eleActualDimension.width)
+            eleHeight = parseInt(eleActualDimension.height)
+
+            //track mouse move
+            document.addEventListener("mousemove", mousemoveFunction)
+            document.addEventListener("mouseup", mouseupFunction)
+        }
+
+        function mousemoveFunction(e) {
+            console.log(e.className)
+            let changeX = e.clientX - cursorX;
+            let changeY = e.clientY - cursorY;
+
+            resizeableEle.style.width = `${eleWidth + changeX}px`
+            resizeableEle.style.height = `${eleHeight + changeY}px`
+        }
+
+        function mouseupFunction() {
+            document.removeEventListener('mousemove', mousemoveFunction)
+            document.removeEventListener('mouseup', mouseupFunction)
+        }
+    </script>
+</body>
+
+</html>

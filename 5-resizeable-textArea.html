@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resizeable Textarea</title>
+    <style>
+        #userdata {
+            display: block;
+            resize: none;
+            overflow: hidden;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 5)	Create a resizable textarea that expands vertically as the user types, but doesn't show a scrollbar. -->
+    <h1>To create a resizeable textarea that expands vertically user types, but doesn't show a scrollbar</h1>
+    <textarea name="userdata" id="userdata" cols="20" rows="5" placeholder="Your Comments"></textarea>
+    <script>
+        let userdata = document.querySelector("#userdata")
+
+        userdata.addEventListener("input", () => {
+            userdata.style.height = userdata.scrollHeight 
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASCII value</title>
+</head>
+
+<body>
+    <!-- 8.	You are given a string. Write a program that converts every letter to its corresponding ASCII value and displays the result on a web page.
+
+        Given input:Kovai
+        Expected output:75 111 118 97 105 -->
+
+
+    <h1>To convert every letter to its corresponding ASCII value</h1>
+    <input type="text" id="str" placeholder="Enter a string">
+    <button type="button" id="btn">Count</button>
+    <div id="result"></div>
+    <script>
+        let btn = document.querySelector("#btn");
+        let result = document.querySelector("#result")
+        btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            let ascii = ""
+            let str = document.querySelector("#str").value  
+            for(let i =0; i<str.length;i++){
+                ascii = ascii + " "+ str.codePointAt(i)
+            }
+            result.textContent = ascii
+        })
+    </script>
+</body>
+
+</html>

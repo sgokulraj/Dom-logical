@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sum of a particular column</title>
+    <style>
+        table {
+            text-align: center;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        .sum {
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 7.	Write a program to calculate the total sum of a particular column in the table and display it on the web page.
+
+        Given Input:
+        Item	Price	Quantity
+        Item 1	10	2
+        Item 2	20	3
+        Item 3	5	4
+
+        Expected Output:
+
+        Item	Price	Quantity
+        Item 1	10	2
+        Item 2	20	3
+        Item 3	5	4
+        Total: 35.00 -->
+
+    <div>
+        <h1>To calculate the total sum of a particular column in the table</h1>
+        <table style="width: 200px;">
+            <tr>
+                <th style="width:50%">Name</th>
+                <th style="width:25%" class="sum">Price</th>
+                <th>Quantity</th>
+            </tr>
+            <tr>
+                <td>Item1</td>
+                <td class="sum"><input type="number" class="col1" value="10" onchange=total()></td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>Item2</td>
+                <td class="sum"><input type="number" class="col2" value="20" onchange=total()></td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>Item3</td>
+                <td class="sum"><input type="number" class="col3" value="30" onchange=total()></td>
+                <td>4</td>
+            </tr>
+        </table>
+        <p id="result"></p>
+    </div>
+    <script>
+        function total() {
+            let result = document.querySelector("#result")
+            let col1 = document.querySelector(".col1").value
+            let col2 = document.querySelector(".col2").value
+            let col3 = document.querySelector(".col3").value
+
+            let arr = [col1, col2, col3]
+
+            let sum = arr.reduce(function (accumulator, item) {
+                return accumulator + Number(item);
+            }, 0)
+            result.textContent = `Total = ${sum}`
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CheckBox</title>
+
+</head>
+
+<body>
+    <h1>To Display a message with the selected checkbox options when a button is clicked.</h1>
+    <form action="#">
+        <label for="title">Select favourite Subjects</label>
+        <p>
+            <input type="checkbox" name="maths" id="maths" value="maths">
+            <label for="maths">Maths</label>
+        </p>
+        <p>
+            <input type="checkbox" name="physics" id="physics" value="physics">
+            <label for="physics">Physics</label>
+        </p>
+        <p>
+            <input type="checkbox" name="chemistry" id="chemistry" value="chemistry">
+            <label for="chemistry">Chemistry</label>
+        </p>
+        <p>
+            <input type="checkbox" name="botany" id="botany" value="botany">
+            <label for="botany">Botany</label>
+        </p>
+        <p>
+            <input type="checkbox" name="zoology" id="zoology" value="zoology">
+            <label for="zoology">Zoology</label>
+        </p>
+        <p>
+            <button id="btn">Submit</button>
+        </p>
+    </form>
+    <div id="result"></div>
+    <script>
+        let result = document.querySelector("#result")
+        let btn = document.querySelector("#btn")
+        let subjects = document.querySelectorAll("[type='checkbox']")
+        let form = document.querySelector("form")
+        let subjectsArr = []
+        btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            subjects.forEach((subject) => {
+                subject.checked ? subjectsArr.push(subject.value) : ""
+            })
+            result.textContent = subjectsArr
+            form.reset()
+        })
+    </script>
+</body>
+
+</html>

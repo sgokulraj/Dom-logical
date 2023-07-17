@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculator</title>
+</head>
+
+<body>
+    <h1>To implement a calculator that performs basic arthimetic operations based on user input</h1>
+    <p>First number: <input type="number" name="num1" id="num1"></p>
+    <p>Second Number: <input type="number" name="num2" id="num2"> </p>
+    <p>Result :<input type="number" name="result" id="result" disabled value="0"></p>
+
+    <button id="add">Add</button>
+    <button id="sub">Subtract</button>
+    <button id="multiply">Multiply</button>
+    <button id="div">Division</button>
+
+    <script>
+        let add = document.querySelector("#add")
+        let sub = document.querySelector("#sub")
+        let multiply = document.querySelector("#multiply")
+        let div = document.querySelector("#div")
+
+        let num1 = document.querySelector("#num1")
+        let num2 = document.querySelector("#num2")
+        let result = document.querySelector("#result")
+
+        add.addEventListener("click", (e) => {
+            e.preventDefault();
+            let sum = Number(num1.value) + Number(num2.value)
+            result.value = sum
+        })
+        sub.addEventListener("click", (e) => {
+            e.preventDefault();
+            let sub = Number(num1.value) - Number(num2.value)
+            result.value = sub
+        })
+        multiply.addEventListener("click", (e) => {
+            e.preventDefault();
+            let multiply = Number(num1.value) * Number(num2.value)
+            result.value = multiply
+        })
+        div.addEventListener("click", (e) => {
+            e.preventDefault();
+            let div = Number(num1.value) / Number(num2.value)
+            result.value = div
+        })
+
+    </script>
+</body>
+
+</html>

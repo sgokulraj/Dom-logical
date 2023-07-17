@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Functionality</title>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 2)	Implement a search functionality that filters a list of items based on the user's input. -->
+    <h1>To implement a search functionality that filters a list of items based on user's input</h1>
+    <form>
+        <p>
+            <input type="text" name="designation" id="designation" placeholder="Search by Designation">
+
+        </p>
+        <p>
+            <input type="text" name="city" id="city" placeholder="Search by City">
+        </p>
+        <p>
+            <button id="searchBtn">Search</button>
+            <button type="reset" id="resetBtn">Reset</button>
+        </p>
+    </form>
+    <table style="width:60%" id="data">
+        <caption>
+            Candidate Details
+        </caption>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Designation</th>
+                <th>City</th>
+            </tr>
+        </thead>
+
+    </table>
+    <script>
+        let candidates = [
+            {
+                name: "John",
+                age: 25,
+                designation: "Web Developer",
+                city: "Bangalore"
+            },
+            {
+                name: "Jack",
+                age: 26,
+                designation: "Graphics Designer",
+                city: "Chennai"
+            },
+            {
+                name: "Mary",
+                age: 28,
+                designation: "Android Developer",
+                city: "Coimbatore"
+            },
+            {
+                name: "Robert",
+                age: 28,
+                designation: "Web Developer",
+                city: "Coimbatore"
+            },
+            {
+                name: "Prince",
+                age: 27,
+                designation: "Graphics Designer",
+                city: "Bangalore"
+            },
+            {
+                name: "Queency",
+                age: 30,
+                designation: "Android Developer",
+                city: "Chennai"
+            },
+            {
+                name: "Albert",
+                age: 35,
+                designation: "Web Developer",
+                city: "Hyderabad"
+            },
+            {
+                name: "Peter",
+                age: 27,
+                designation: "Graphics Designer",
+                city: "Bangalore"
+            },
+            {
+                name: "Wellesley",
+                age: 28,
+                designation: "Android Developer",
+                city: "Hyderabad"
+            },
+            {
+                name: "Clive",
+                age: 31,
+                designation: "Web Developer",
+                city: "Hyderabad"
+            },
+        ]
+
+        //fetching data to table
+        let dataTable = document.querySelector("#data")
+        let tbody = dataTable.createTBody()
+        for (let i = 0; i < candidates.length; i++) {
+            let tr = document.createElement("tr")
+            for (const prop in candidates[i]) {
+                let td = document.createElement("td")
+                td.textContent = candidates[i][prop]
+                tr.appendChild(td)
+            }
+            tbody.appendChild(tr)
+        }
+
+        //resetting the table 
+        let resetBtn = document.querySelector("#resetBtn")
+        resetBtn.addEventListener("click", () => {
+            dataTable.removeChild(dataTable.lastElementChild)
+            let tbodyTwo = dataTable.createTBody()
+            for (let i = 0; i < candidates.length; i++) {
+                let tr = document.createElement("tr")
+                for (const prop in candidates[i]) {
+                    let td = document.createElement("td")
+                    td.textContent = candidates[i][prop]
+                    tr.appendChild(td)
+                }
+                tbodyTwo.appendChild(tr)
+            }
+        })
+
+
+
+        let searchBtn = document.querySelector("#searchBtn")
+        searchBtn.addEventListener("click", (e) => {
+            e.preventDefault()
+            let designate = document.querySelector("#designation").value.toLowerCase();
+            let city = document.querySelector("#city").value.toLowerCase();
+            console.log(designate);
+            console.log(city);
+
+            let filtered = [...candidates]
+            console.log(filtered);
+            if (designate) {
+                filtered = filtered.filter((filt) => {
+                    return filt.designation.toLowerCase().includes(designate)
+                })
+                console.log(filtered);
+            }
+            if (city) {
+                filtered = filtered.filter((filt) => {
+                    return filt.city.toLowerCase().includes(city)
+                })
+                console.log(filtered);
+
+            }
+            for (let i = 0; i < filtered.length; i++) {
+                dataTable.removeChild(dataTable.lastElementChild)
+                let tbodyThree = dataTable.createTBody()
+                let tr = document.createElement("tr")
+                for (const prop in filtered[i]) {
+                    let td = document.createElement("td")
+                    td.textContent = filtered[i][prop]
+                    tr.appendChild(td)
+                }
+                tbodyThree.appendChild(tr)
+            }
+        })
+
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Input Field</title>
+    <style>
+        #error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 1)	Create a button that dynamically adds a new input field when clicked. The user should be able to add multiple input fields. -->
+
+    <h1>To add input field dynamically when button is clicked</h1>
+    <form action="#" id="form">
+        <p>
+            <label for="type">Enter Input Field Type</label>
+            <input type="text" name="type" id="type" value="" autofocus >
+        </p>
+        <p>
+            <label for="type">Enter Input Field Name</label>
+            <input type="text" name="name" id="name" value="">
+        </p>
+        <p><button type="button" id="btn">Submit</button></p>
+        <p id="error"></p>
+    </form>
+    <div>
+        <h1>Output</h1>
+        <form id="result"></form>
+    </div>
+    <script>
+        let result = document.querySelector("#result");
+        let btn = document.querySelector("#btn");
+        let form = document.querySelector("#form")
+        let error = document.querySelector("#error")
+
+
+        btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            let type = document.querySelector("#type").value.toLowerCase();
+            let name = document.querySelector("#name").value.toLowerCase();
+            
+            if (type && name) {
+                error.textContent = ""
+                let inputfield = document.createElement("input")
+                let inputlabel = document.createElement("label")
+                let p = document.createElement("p")
+                inputfield.type = `${type}`
+                inputfield.name = `${name}`
+                inputfield.id = `${name}`
+                inputlabel.for = `${name}`
+                inputlabel.textContent = `${name}: `
+                result.append(p)
+                p.append(inputlabel, inputfield)
+                form.reset()
+                document.querySelector("#type").focus()
+
+            } else {
+                error.textContent = "All fields are required"
+            }
+            
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Longest Incresing Subarray</title>
+</head>
+
+<body>
+    <!-- 9) You are given a list of integers. Write a program to find the longest increasing subarray in the list and display
+    the result on a web page.
+
+    Given input:10,9,2,5,3,7,101,18
+    Expected output:3,7,101 -->
+
+    <h1>To find the longest increasing subarray from the list of integers</h1>
+    <p> [10,9,2,5,3,7,101,18]</p>
+    <p id="result"></p>
+    <script>
+        let arr = [10, 9, 2, 5, 3, 7, 101, 18]
+        let subArrIndex = []
+        let resultIndex = []
+        let count = 1;
+        let len = 1;
+        for (let i = 1; i < arr.length; i++) {
+            if (arr[i] > arr[i - 1]) {
+                subArrIndex.push(i)
+                count++
+            } else {
+                if (count > len) {
+                    len = count
+                    resultIndex = [...subArrIndex]
+                }
+                subArrIndex = []
+                count = 1
+            }
+        }
+        if (count > len) {
+            len = count
+            resultIndex = [...subArrIndex]
+        }
+        // console.log(len);
+        // console.log(resultIndex);
+
+        let output = arr.slice(resultIndex[0] - 1, resultIndex.pop() + 1)
+        // console.log(output);
+        let result = document.querySelector("#result")
+        result.textContent = output
+    </script>
+</body>
+
+</html>
